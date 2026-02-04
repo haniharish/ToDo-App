@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ToDo List</title>
+</head>
+<body>
+
+    <style>
+
+        .box{
+            height:auto;
+            width:400px;
+            border:2px solid gray;
+            border-radius: 10px;
+            box-shadow:5px 5px 10px lightgray;
+            margin:auto;
+        }
+
+        h2{
+            text-align: center;
+            font-weight: xx-bold;
+            text-decoration: underline;
+        }
+
+        #addBtn{
+            margin-left: 10px;
+            width:100px;
+            height: 30px;
+            border-radius: 5px;
+            background-color: steelblue;
+            color: white;
+            border:none;
+        }
+        input{
+            margin-left: 10px;
+            border:1px solid gray;
+            border-radius: 5px;
+            height: 25px;
+            width: 250px;
+            padding-left: 10px;
+            color:black;
+
+        }
+        .delete-btn{
+            background-color: crimson;
+            color: white;
+            border:none;
+            border-radius: 5px;
+            height: 25px;
+            cursor: pointer;
+        }
+
+        .item{
+            margin: 10px 0;
+        }
+
+    </style>
+
+    <div class="box">
+        <h2>Tasks -  </h2>
+        <input type="text" id="task" placeholder="Enter a task">
+        <button id="addBtn">Add Task</button>
+        <ul id="ul"></ul>
+    </div>
+    
+
+    <script>
+        const addBtn = document.getElementById('addBtn');
+        const input = document.getElementById('task');
+        const ul = document.getElementById('ul');
+
+        addBtn.addEventListener('click',()=>{
+            const addTask = input.value.trim();
+            if(addTask ==="") return;
+
+            const li = document.createElement('li');
+            li.innerText = addTask;
+            li.classList.add('item');
+
+            const delBtn = document.createElement('button');
+            delBtn.innerText = "Delete";
+            delBtn.style.marginLeft = "10px";
+            delBtn.classList.add('delete-btn');
+            
+            delBtn.addEventListener('click',()=>{
+                li.remove();
+            });
+
+            li.appendChild(delBtn);
+
+            ul.appendChild(li);
+            input.value ="";
+        });
+
+    </script>
+
+
+</body>
+</html>
